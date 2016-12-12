@@ -2,6 +2,19 @@
 <div class="container">
 <form ng-submit="signIn()">
 <h2>Login to Admin panel</h2>  <h5  style="color:{{resultColor}}" ng-bind="result"></h5>
+  
+  <div class="input-field col s6">
+    <input id="icon_prefix" type="text" class="validate" ng-model="full_name">
+    <label for="icon_prefix">Full name</label>
+  </div>
+  <div class="input-field col s6">
+    <input id="icon_prefix" type="text" class="validate" ng-model="phone">
+    <label for="icon_prefix">Phone</label>
+  </div>
+  <div class="input-field col s6">
+    <input id="icon_prefix" type="text"  ng-model="cnic">
+    <label for="icon_prefix">CNIC</label>
+  </div>
   <div class="input-field col s6">
   	<input id="icon_prefix" type="text" class="validate" ng-model="email">
   	<label for="icon_prefix">Email</label>
@@ -17,3 +30,4 @@
 </div>
  
 <hr>
+<br><br><br><br>  

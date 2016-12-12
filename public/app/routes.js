@@ -1,7 +1,7 @@
 
 
 
-app.config(['$routeProvider', function ($routeProvider) {
+app.config(['$routeProvider','$stateProvider', function ($routeProvider,$stateProvider) {
 
   $routeProvider.when('/home', {
     templateUrl: 'app/modules/home/home.html',
@@ -11,6 +11,14 @@ app.config(['$routeProvider', function ($routeProvider) {
     templateUrl: 'app/modules/admin/admin.html',
     controller: 'adminCtrl'
   })
-  .otherwise({ redirectTo: '/home' })
+  .otherwise({ redirectTo: '/home' });
+
+
+
+// State Setup - ui Router
+$stateProvider.state('adminControl', {
+  templateUrl: 'app/modules/admin/admin.html',
+  controller:'adminCtrl'
+})
   
-}])
+}]);

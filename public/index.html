@@ -11,9 +11,24 @@
 </head>
 <body>
 
+
+
+
 <header ng-include="'app/modules/home/header.html'"></header>
+<section ng-hide="hideX">
 <main ng-view></main>
+</section>  
+<div ng-show="showX">
+
+    <ui-view> Working fine! </ui-view>
+</div>
+
 <footer class="page-footer teal" ng-include="'app/modules/home/footer.html'"> </footer>
+
+
+  
+
+
 
   
   <!-- angularjs files -->
@@ -32,6 +47,7 @@
    <!-- modules -->
 
    <script src="app/modules/home/homeController.js"></script>
+   <script src="app/modules/admin/adminController.js"></script>
    
 
 
