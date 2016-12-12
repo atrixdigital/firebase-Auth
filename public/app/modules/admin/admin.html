@@ -7,17 +7,24 @@
 <<table class="hoverable">
 	<thead>
 		<tr>
-			<th data-field="id">Name</th>
-			<th data-field="name">Email</th>
+			<th data-field="uniqueId">UniqueID</th>
+			<th data-field="name">FullName</th>
+			<th data-field="name">CNIC</th>
+			<th data-field="price">Email</th>
 			<th data-field="price">Password</th>
 		</tr>
 	</thead>
 
 	<tbody>
 		<tr ng-repeat="x in fireData">
-			<td>{{x.uID}}</td>
+			<td>{{x.uniqueId}}</td>
+			<td>{{x.full_name}}</td>
+			<td>{{x.cnic}}</td>
 			<td>{{x.email}}</td>
 			<td>{{x.password}}</td>
+			<td><qrcode data="{{x.full_name}}"></qrcode></td>
+
+
 		</tr>
 	</tbody>
 </table>

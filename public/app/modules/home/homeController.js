@@ -7,6 +7,7 @@ app.controller('homeCtrl', function ($scope,$rootScope,$firebaseAuth,$location,$
 
 
   // THIS IS HOW YOU CREATE A FIREBASE AUTH AND FIREBASE DB.
+  //Thankyou 
 
  // predefine variables
  $scope.full_name ='';
@@ -23,7 +24,34 @@ app.controller('homeCtrl', function ($scope,$rootScope,$firebaseAuth,$location,$
 $scope.afterLogin = function(){
     $rootScope.hideX = true;
     $rootScope.showX = true;
-    $state.go('adminControl');
+      if($rootScope.status === 'valid'){
+              $state.go('adminControl');
+        } else {
+          $scope.result ='error , Unable to access admin panel';
+        }
+
+  }
+
+
+  $scope.afterSignUp = function(){
+             
+       fireDb.child($scope.uid).set({  /*create new user*/
+                password:$scope.pass,
+                full_name:$scope.full_name,
+                cnic:$scope.cnic,
+                email:$scope.email,
+                uniqueId:$scope.uid
+               });
+
+           $rootScope.hideX = true;
+           $rootScope.showX = true;
+           if($rootScope.status === 'valid'){
+              $state.go('adminControl');
+        } else {
+          $scope.result ='error , Unable to access admin panel';
+        }
+ 
+
 
   }
 // Works if the user exists in our Firebase Authentication User list. 
@@ -32,9 +60,8 @@ $scope.signIn = function(){
 	 $scope.auth.$signInWithEmailAndPassword($scope.email, $scope.pass).then(function(firebaseUser){
       // my logic after sign In 
       $scope.result = "login Succesful!: UID = "+firebaseUser.uid;
-      $scope.resultColor = 'green';
-      
-
+      $scope.resultColor = 'green';     
+      $rootScope.status = true;
       $scope.afterLogin();
 
       //more logic...
@@ -53,13 +80,9 @@ $scope.signIn = function(){
     		function(firebaseUser){
             // logic after sign up 
             $scope.result = "user signed up with following email" + firebaseUser.email + firebaseUser.uid;
-               fireDb.child(firebaseUser.uid).set({  /*create new user*/
-                password:$scope.pass,
-                full_name:$scope.full_name,
-                cnic:$scope.cnic,
-                email:$scope.email,
-                uniqueId:firebaseUser.uid
-               });
+                $scope.uid = firebaseUser.uid;
+                $rootScope.status = 'valid';
+               $scope.afterSignUp();
                $scope.resultColor = 'green';
 
 
