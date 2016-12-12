@@ -1,0 +1,24 @@
+
+
+<h1>admin</h1>
+
+<div>
+<hr> 
+<<table class="hoverable">
+	<thead>
+		<tr>
+			<th data-field="id">Name</th>
+			<th data-field="name">Email</th>
+			<th data-field="price">Password</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr ng-repeat="x in fireData">
+			<td>{{x.uID}}</td>
+			<td>{{x.email}}</td>
+			<td>{{x.password}}</td>
+		</tr>
+	</tbody>
+</table>
+ <hr>
